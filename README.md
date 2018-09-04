@@ -1,7 +1,7 @@
 # Interpolation Library for Apache Mynewt
 
 The main package documentation for this repository is available at
-[microbuilder.io/mb_tcs3472x](http://microbuilder.io/mb_tcs3472x).
+[microbuilder.io/mb_interpolate](http://microbuilder.io/mb_interpolate).
 
 # Folder Structure
 

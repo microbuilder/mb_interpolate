@@ -345,7 +345,7 @@ intpl_cubic_arr(struct intpl_xyc xyc[], unsigned int n, float x, float *y)
 
     /* First check if pklo and pkhi from the last run are still a valid match.
      * The static values are maintained across calls to this function, allowing
-     * us to avoid unnecessarily perform a full array search. */
+     * us to avoid unnecessarily performing a full array search. */
     if(xyc[pklo].x <= x && xyc[pkhi].x > x) {
         klo = pklo;
         khi = pkhi;

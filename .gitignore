@@ -30,4 +30,4 @@ tags
 .DS_Store
 *.swp
 *.swo
-
+docs/doxygen

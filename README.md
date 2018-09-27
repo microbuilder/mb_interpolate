@@ -11,4 +11,5 @@ The main package documentation for this repository is available at
 serve as an example of how the various functions and structs in this package
 can be used.
 
-- **Documentation** is available in the `docs` folder.
+- **Documentation** is available in the `docs` folder. Doxygen is required to
+build the documentation locally.

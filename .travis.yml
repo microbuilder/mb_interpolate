@@ -1,0 +1,77 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+language: go
+
+_addons: &addon_conf
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - gcc-multilib
+      - gcc-7-multilib
+
+go:
+  - "1.10"
+
+os: osx
+osx_image: xcode9.2
+
+install:
+- printenv
+- export GOPATH=$HOME/gopath
+- go version
+
+- git clone https://github.com/runtimeco/mynewt-travis-ci $HOME/ci
+- chmod +x $HOME/ci/*.sh
+- $HOME/ci/${TRAVIS_OS_NAME}_travis_install.sh
+
+- newt version
+- gcc --version
+- arm-none-eabi-gcc --version
+
+script:
+- |
+ cat <<EOT >> project.yml
+ project.name: "microbuilder-interpolate-ci"
+
+ project.repositories:
+     - apache-mynewt-core
+     - apache-mynewt-nimble
+
+ repository.apache-mynewt-core:
+     type: github
+     vers: 0.0.0
+     user: apache
+     repo: mynewt-core
+
+ repository.apache-mynewt-nimble:
+     type: github
+     vers: 0.0.0
+     user: apache
+     repo: mynewt-nimble
+ EOT
+- cp -R $HOME/ci/mynewt-nimble-targets targets
+- mkdir -p repos && cd repos/
+- git clone https://github.com/apache/mynewt-core apache-mynewt-core
+- git clone https://github.com/apache/mynewt-nimble apache-mynewt-nimble
+- cd ..
+- newt test interpolate/test
+
+cache:
+  directories:
+  - $HOME/TOOLCHAIN

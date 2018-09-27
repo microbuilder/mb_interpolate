@@ -7,8 +7,7 @@ values based on the following algorithms:
 - Linear (AKA 'piecewise linear') interpolation
 - Natural cubic spline interpolation
 
-It is designed to work with the [Apache Mynewt](https://mynewt.apache.org/)
-operating system, and was written using version 1.4.1.
+It is designed to work with the [Apache Mynewt](https://mynewt.apache.org/) operating system, and was written using version 1.4.1.
 
 ## Dependencies
 
@@ -31,6 +30,4 @@ dependency. This will pull the latest version of the library from Github:
 
 ## Development Status
 
-See the dedicated [ToDos](/todos.md) page for details, or check the [issue
-tracking](https://github.com/microbuilder/mb_interpolate/issues) for the
-project on Github.
+Check [issue tracking](https://github.com/microbuilder/mb_interpolate/issues) for the project on Github, or look at the README file in the root of this repo.

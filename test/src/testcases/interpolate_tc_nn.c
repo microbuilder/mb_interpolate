@@ -20,17 +20,6 @@
 #include <string.h>
 #include "interpolate_test_priv.h"
 
-/** Checks if two float values are 'nearly' equal (diff < epsilon) */
-static bool
-f_is_equal(float a, float b, float epsilon)
-{
-    float c;
-
-    c = a - b;
-
-    return c < epsilon && -c < epsilon;
-}
-
 TEST_CASE(nn)
 {
     int rc;
@@ -46,17 +35,17 @@ TEST_CASE(nn)
     /* Test 1: Interpolate y at x = 13.6 */
     rc = intpl_nn(&xy1, &xy3, 13.6f, &y2);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y2, xy1.y, 1E-4F));
+    TEST_ASSERT(f_is_equal(y2, xy1.y, 1E-4F, "nn1"));
 
     /* Test 2: Interpolate y at x = 15.6 */
     rc = intpl_nn(&xy1, &xy3, 15.6f, &y2);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F));
+    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F, "nn2"));
 
     /* Test 3: Interpolate y at x = 15.0 */
     rc = intpl_nn(&xy1, &xy3, 15.0f, &y2);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F));
+    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F, "nn3"));
 
     /* Test 4: Check for delta 0.0 on x. */
     xy3.x = xy1.x;
@@ -69,19 +58,19 @@ TEST_CASE(nn)
     xy3.x = 10.0f;
     rc = intpl_nn(&xy1, &xy3, 2.75f, &y2);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F));
+    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F, "nn5"));
     xy1.x = 10.0f;
     xy3.x = 20.0f;
 
     /* Test 6: x2 == x1. */
     rc = intpl_nn(&xy1, &xy3, xy1.x, &y2);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y2, xy1.y, 1E-4F));
+    TEST_ASSERT(f_is_equal(y2, xy1.y, 1E-4F, "nn6"));
 
     /* Test 7: x2 == x3. */
     rc = intpl_nn(&xy1, &xy3, xy3.x, &y2);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F));
+    TEST_ASSERT(f_is_equal(y2, xy3.y, 1E-4F, "nn7"));
 }
 
 TEST_CASE(nn_arr)
@@ -123,5 +112,5 @@ TEST_CASE(nn_arr)
     x = -0.25f;
     rc = intpl_nn_arr(xy, n, x, &y);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y, xy[1].y, 1E-4F));
+    TEST_ASSERT(f_is_equal(y, xy[1].y, 1E-4F, "nn_arr"));
 }

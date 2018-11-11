@@ -20,17 +20,6 @@
 #include <string.h>
 #include "interpolate_test_priv.h"
 
-/** Checks if two float values are 'nearly' equal (diff < epsilon) */
-static bool
-f_is_equal(float a, float b, float epsilon)
-{
-    float c;
-
-    c = a - b;
-
-    return c < epsilon && -c < epsilon;
-}
-
 TEST_CASE(cubic_arr)
 {
     int rc;
@@ -68,7 +57,7 @@ TEST_CASE(cubic_arr)
     x = -1.25f;
     rc = intpl_cubic_arr(xyc, n, x, &y);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(y, 1.907918f, 1E-4F));
+    TEST_ASSERT(f_is_equal(y, 1.907918f, 1E-4F, "cubic_arr"));
 
     /* Test 2: Not enough samples. */
     x = 0.7f;

@@ -24,6 +24,7 @@ pkg.keywords:
 
 pkg.deps:
     - "@apache-mynewt-core/test/testutil"
+    - "@mb_floatcheck/floatcheck"
     - "interpolate"
 
 pkg.deps.SELFTEST:

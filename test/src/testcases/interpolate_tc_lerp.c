@@ -20,17 +20,6 @@
 #include <string.h>
 #include "interpolate_test_priv.h"
 
-/** Checks if two float values are 'nearly' equal (diff < epsilon) */
-static bool
-f_is_equal(float a, float b, float epsilon)
-{
-    float c;
-
-    c = a - b;
-
-    return c < epsilon && -c < epsilon;
-}
-
 TEST_CASE(lerp)
 {
     int rc;
@@ -44,19 +33,19 @@ TEST_CASE(lerp)
     /* Test 1: Normal conversion. */
     rc = intpl_lerp(v0, v1, t, &v);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(v, 0.15f, 1E-4F));
+    TEST_ASSERT(f_is_equal(v, 0.15f, 1E-4F, "lerp 1"));
 
     /* Test 2: t = 0. */
     t = 0.0f;
     rc = intpl_lerp(v0, v1, t, &v);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(v, v0, 1E-4F));
+    TEST_ASSERT(f_is_equal(v, v0, 1E-4F, "lerp 2"));
 
     /* Test 3: t = 1.0. */
     t = 1.0f;
     rc = intpl_lerp(v0, v1, t, &v);
     TEST_ASSERT_FATAL(rc == 0);
-    TEST_ASSERT(f_is_equal(v, v1, 1E-4F));
+    TEST_ASSERT(f_is_equal(v, v1, 1E-4F, "lerp 3"));
 
     /* Test 4: t = -0.01 (invalid value). */
     t = -0.01f;

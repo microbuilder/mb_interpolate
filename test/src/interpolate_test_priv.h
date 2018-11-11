@@ -23,6 +23,7 @@
 #include <stddef.h>
 #include "os/mynewt.h"
 #include "testutil/testutil.h"
+#include "floatcheck/floatcheck.h"
 #include "interpolate/interpolate.h"
 
 #ifdef __cplusplus

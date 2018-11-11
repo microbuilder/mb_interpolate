@@ -27,3 +27,11 @@ repo.newt_compatibility:
     # present.
     0.0.0:
         0.0.0: good
+
+repo.deps:
+    mb_floatcheck:
+        type: github
+        user: microbuilder
+        repo: mb_floatcheck
+        vers:
+            master: 0.0.0

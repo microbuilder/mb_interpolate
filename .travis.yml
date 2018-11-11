@@ -76,6 +76,7 @@ script:
 - mkdir -p repos && cd repos/
 - git clone https://github.com/apache/mynewt-core apache-mynewt-core
 - git clone https://github.com/apache/mynewt-nimble apache-mynewt-nimble
+- git clone https://github.com/microbuilder/mb_floatcheck mb_floatcheck
 - cd ..
 - newt test interpolate/test
 

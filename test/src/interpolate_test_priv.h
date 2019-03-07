@@ -30,7 +30,7 @@
 extern "C" {
 #endif
 
-int intpl_fmt_test_suite(void);
+TEST_SUITE_DECL(intpl_fmt_test_suite);
 
 #ifdef __cplusplus
 }
